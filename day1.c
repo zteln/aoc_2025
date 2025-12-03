@@ -21,7 +21,6 @@ int problem_2(int cursor, int dir, int clicks, int *result) {
 }
 
 int main(int argc, char *argv[]) {
-
     if (argc == 3) {
         int result = 0;
         int c;
