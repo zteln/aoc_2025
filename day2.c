@@ -53,7 +53,6 @@ void problem2(unsigned long min, unsigned long max, unsigned long *sum) {
                 partitions[bucket] = partitions[bucket] * 10 + digit;
             }
 
-
             int all_same = 0;
             for (int j = 0; j < no_digits/ i; j++) {
                 if (partitions[j] != partitions[0]) {
