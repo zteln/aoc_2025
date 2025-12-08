@@ -35,11 +35,9 @@ void problem2(int *arr, unsigned int cols, unsigned int len, unsigned int *sum) 
         removed = 0;
 
         for (int i = 0; i < len; i++) {
-            if (arr[i] == 1) {
-                if (check_neighbours(i, arr, cols, len) == 1) {
-                    arr[i] = 2;
-                    removed++;
-                }
+            if (arr[i] == 1 && check_neighbours(i, arr, cols, len) == 1) {
+                arr[i] = 2;
+                removed++;
             }
         }
 
