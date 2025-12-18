@@ -92,31 +92,28 @@ fn problem2(coords: &Vec<Vec<u64>>) -> u64 {
 
     dists.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap());
 
-    // break when len(sets) == 1 and size(hashset) == len(coords) (input)
-    loop {
-        for (_, i, j) in dists.iter() {
-            let mut indices_to_merge: Vec<usize> = vec![];
-            for (k, set) in sets.iter().enumerate() {
-                if set.contains(i) || set.contains(j) {
-                    indices_to_merge.push(k);
-                } 
-            }
+    for (_, i, j) in dists.iter() {
+        let mut indices_to_merge: Vec<usize> = vec![];
+        for (k, set) in sets.iter().enumerate() {
+            if set.contains(i) || set.contains(j) {
+                indices_to_merge.push(k);
+            } 
+        }
 
-            let mut set: HashSet<usize> = HashSet::new();
-            set.insert(*i);
-            set.insert(*j);
-            for idx in indices_to_merge.iter().rev() {
-                let merged_set = sets.remove(*idx);
-                set.extend(merged_set);
-            }
-            sets.push(set);
+        let mut set: HashSet<usize> = HashSet::new();
+        set.insert(*i);
+        set.insert(*j);
+        for idx in indices_to_merge.iter().rev() {
+            let merged_set = sets.remove(*idx);
+            set.extend(merged_set);
+        }
+        sets.push(set);
 
-            if sets.len() == 1 && sets[0].len() == coords.len() {
-                return coords[*i][0] * coords[*j][0];
-            }
+        if sets.len() == 1 && sets[0].len() == coords.len() {
+            return coords[*i][0] * coords[*j][0];
         }
     }
-    // return 0;
+    return 0;
 }
 
 fn euclidean_distance(p1: Vec<u64>, p2: Vec<u64>) -> f64 {
